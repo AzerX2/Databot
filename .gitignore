@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# config et bdd
+
+*.json
+*.txt
+
+# node module
+node_modules
