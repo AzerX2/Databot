@@ -15,7 +15,7 @@ module.exports = {
             option.setName('reason')
             .setDescription('reason of the report | raison du report')
             .setRequired(true)
-            .addChoices({ name: 'Spam', value: 'Spam' }, { name: 'SelfBot', value: 'SelfBot' }, { name: 'Raid/demande de raid', value: 'Raid' }, { name: 'Incitation à la haine', value: 'Incitation à la haine' }, { name: 'Harcèlement', value: 'Harcèlement' }, { name: 'Non-respect des TOS Discord', value: 'Non-respect des TOS Discord' }, { name: 'Pub Mp', value: 'Pub Mp' }, { name: 'Mass mp', value: 'Mass mp' }, { name: 'Menace, comportement cancer', value: 'Menace, comportement cancer' }, { name: 'Plagia de Serveur', value: 'Plagia de Serveur' }, { name: 'Autre', value: 'Autre' }))
+            .addChoices({ name: 'Spam', value: 'Spam' }, { name: 'Arnaque', value: 'Arnaque' }, { name: 'SelfBot', value: 'SelfBot' }, { name: 'Raid/demande de raid', value: 'Raid' }, { name: 'Incitation à la haine', value: 'Incitation à la haine' }, { name: 'Harcèlement', value: 'Harcèlement' }, { name: 'Non-respect des TOS Discord', value: 'Non-respect des TOS Discord' }, { name: 'Pub Mp', value: 'Pub Mp' }, { name: 'Mass mp', value: 'Mass mp' }, { name: 'Menace, comportement cancer', value: 'Menace, comportement cancer' }, { name: 'Plagia de Serveur', value: 'Plagia de Serveur' }, { name: 'Autre', value: 'Autre' }))
         .addStringOption(option =>
             option.setName('preuve')
             .setDescription('preuve of the report | preuve du report')

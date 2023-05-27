@@ -29,6 +29,16 @@ const fs = require('fs');
 // Gestion d'erreur
 process.on('unhandledRejection', error => {
     console.error('Unhandled promise rejection:', error);
+    // on envoit un message au channel 997109989615337553 si il y a une erreur
+    let embed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Erreur')
+        .setDescription(`Il y a eu une erreur : ${error}`)
+        .setFooter({ text: 'Erreur' })
+        .setTimestamp();
+    client.channels.cache.get('997109989615337553').send({
+        embeds: [embed]
+    })
 });
 
 
