@@ -14,7 +14,7 @@ module.exports = {
 
         guild.members.cache.forEach(member => {
             blacklist.findOne({
-                userID: member.id
+                userid: member.id
             }, (err, b) => {
                 if (err) console.log(err);
                 if (b) {

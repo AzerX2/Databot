@@ -68,24 +68,32 @@ module.exports = async(client, interaction) => {
                         })
                     }, 1000)
                 }
+                setTimeout(() => {
+                    interaction.message.delete()
+                }, 3000)
             })
         }
         if (interaction.customId == "refuse") {
             let userid = interaction.message.content
             let report = require('../models/report.js');
             report.findOne({ userid: userid }, (err, report) => {
-                if (err) console.error(err);
-                if (report) {
-                    report.delete();
-                    interaction.reply({
-                        content: `L'utilisateur ${userid} a bien été supprimé de la liste des reports.`
-                    })
-                } else {
-                    interaction.reply({
-                        content: `L'utilisateur ${userid} n'a pas été report.`
-                    })
-                }
-            })
+                    if (err) console.error(err);
+                    if (report) {
+                        report.delete();
+                        interaction.reply({
+                            content: `L'utilisateur ${userid} a bien été supprimé de la liste des reports.`
+                        })
+                    } else {
+                        interaction.reply({
+                            content: `L'utilisateur ${userid} n'a pas été report.`
+                        })
+                    }
+                })
+                // on supprime le message 
+            setTimeout(() => {
+                interaction.message.delete()
+            }, 1000)
+
         }
 
     }

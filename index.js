@@ -13,7 +13,7 @@ const {
 } = require('discord.js');
 // On crée un nouveau client Discord avec les intents souhaités
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS]
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS]
 });
 
 // On récupère le préfixe du bot et le token et le lien de la base de données
