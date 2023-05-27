@@ -1,3 +1,8 @@
+/**
+ * @file ping.js
+ * @description Ce fichier sert à tester les slash commands. (et aussi à répondre pong)
+ */
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -8,6 +13,3 @@ module.exports = {
         interaction.reply({ content: 'Pong' })
     }
 };
-
-
-//interaction.reply({ embeds: [embed] })

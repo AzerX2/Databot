@@ -1,119 +1,50 @@
-const fs = require('fs');
-const cf = require('./config.json');
-const {
-    REST
-} = require('@discordjs/rest');
-const {
-    Routes
-} = require('discord-api-types/v9');
-// Require the necessary discord.js classes
+/**
+ * Template Créé par Azer_X2#8235
+ * github: https://github.com/AzerX2
+ * créditez moi si vous utilisez ce template
+ */
+
 const {
     Client,
+    Collection,
     Intents,
-    Collection
+    MessageEmbed,
+    Permissions
 } = require('discord.js');
-
-// Create a new client instance
+// On crée un nouveau client Discord avec les intents souhaités
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS],
-    fetchAllMembers: true
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS]
 });
 
-const TOKEN = cf.token;
-const TEST_GUILD_ID = ""
+// On récupère le préfixe du bot et le token et le lien de la base de données
+require('dotenv').config();
 
-//test guild = 696066463856853164
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+// MongoDB
+const mongoose = require('mongoose');
 
-const commands = [];
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log('Connectée à Mongodb.'));
 
-// Creating a collection for commands in client
-client.commands = new Collection();
+const fs = require('fs');
 
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    commands.push(command.data.toJSON());
-    client.commands.set(command.data.name, command);
-}
-
-// When the client is ready, this only runs once
-client.once('ready', () => {
-    console.log('Ready!');
-    client.user.setActivity(` ${client.guilds.cache.size} servers | /help`, { type: "WATCHING" });
-    // Registering the commands in the client
-    const CLIENT_ID = client.user.id;
-    const rest = new REST({
-        version: '9'
-    }).setToken(TOKEN);
-    (async() => {
-        try {
-            if (!TEST_GUILD_ID) {
-                await rest.put(
-                    Routes.applicationCommands(CLIENT_ID), {
-                        body: commands
-                    },
-                );
-                console.log('Successfully registered application commands globally');
-            } else {
-                await rest.put(
-                    Routes.applicationGuildCommands(CLIENT_ID, TEST_GUILD_ID), {
-                        body: commands
-                    },
-                );
-                console.log('Successfully registered application commands for development guild');
-            }
-        } catch (error) {
-            if (error) console.error(error);
-        }
-    })();
-
-});
-
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
-    const command = client.commands.get(interaction.commandName);
-    if (!command) return;
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        if (error) console.error(error);
-        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
-});
-client.on("guildCreate", guild => {
-    console.log("Joined a new guild : " + guild.name);
-    client.user.setActivity(` ${client.guilds.cache.size} servers | /help`, { type: "WATCHING" });
-    const embed = new MessageEmbed()
-        .setTitle(`Ajout Serveur`)
-        .setThumbnail(guild.iconURL({ dynamic: true }))
-        .addField('Name :', guild.name, true)
-        .addField('Nombre de membres :', guild.memberCount + " membres", true)
-        .addField(`ID : `, guild.id, true)
-        .setFooter({ text: "DataBot" })
-        .setTimestamp()
-        .setColor(guild.me.displayHexColor);
-
-    client.channels.cache.get('997109978471088179').send({ embeds: [embed] })
-
-
+// Gestion d'erreur
+process.on('unhandledRejection', error => {
+    console.error('Unhandled promise rejection:', error);
 });
 
 
+// handler d'events
+fs.readdir("./Event/", (error, f) => {
+    if (error) console.log(error);
+    console.log(`${f.length} events charg�s`);
 
+    f.forEach((f) => {
+        const events = require(`./Event/${f}`);
+        const event = f.split(".")[0];
 
-client.on("guildDelete", guild => {
-    console.log("Left a guild : " + guild.name);
-    client.user.setActivity(` ${client.guilds.cache.size} servers | /help`, { type: "WATCHING" });
-    const embed = new MessageEmbed()
-        .setTitle(`Suppression Serveur`)
-        .setThumbnail(guild.iconURL({ dynamic: true }))
-        .addField('Name :', guild.name, true)
-        .addField('Nombre de membres :', guild.memberCount + " membres", true)
-        .addField(`ID : `, guild.id, true)
-        .setFooter({ text: "DataBot" })
-        .setTimestamp()
-        .setColor(guild.me.displayHexColor);
-    client.channels.cache.get('997109978471088179').send({ embeds: [embed] })
+        client.on(event, events.bind(null, client));
+    });
 });
 
-client.login(TOKEN);
+
+// login du bot
+client.login(process.env.TOKEN);
