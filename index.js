@@ -55,6 +55,5 @@ fs.readdir("./Event/", (error, f) => {
     });
 });
 
-
 // login du bot
 client.login(process.env.TOKEN);
