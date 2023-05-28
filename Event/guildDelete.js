@@ -7,7 +7,7 @@
  * @description Cette fonction est appelée lorsque le bot quitte un serveur.
  */
 
-
+const { MessageEmbed } = require('discord.js');
 module.exports = async(client, guild) => {
     console.log("Left a guild : " + guild.name);
     client.user.setActivity(` ${client.guilds.cache.size} servers | /help`, { type: "WATCHING" });
