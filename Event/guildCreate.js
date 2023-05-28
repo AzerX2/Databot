@@ -15,9 +15,8 @@ module.exports = async(client, guild) => {
     const embed = new MessageEmbed()
         .setTitle(`Ajout Serveur`)
         .setThumbnail(guild.iconURL({ dynamic: true }))
-        .addFields({ name: 'Nom du serveur :', value: guild.name, inline: true })
-        .addFields({ name: 'Nombre de membres :', value: guild.memberCount, inline: true })
-        .addFields({ name: 'Nombre de salons :', value: guild.channels.cache.size, inline: true })
+        .addFields({ name: 'Nom du serveur :', value: "> " + guild.name, inline: true })
+        .addFields({ name: 'Nombre de membres :', value: guild.memberCount + " membres", inline: true })
         .setFooter({ text: "DataBot" })
         .setTimestamp()
         .setColor('#0099ff');
