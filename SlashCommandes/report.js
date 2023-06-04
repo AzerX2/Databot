@@ -57,10 +57,9 @@ module.exports = {
 
 
         // on envoie l'embed au channel 905156564665638912
-        const channel = interaction.guild.channels.cache.get('905156564665638912');
+        const channel = interaction.guild.channels.cache.get('1102921650615357501');
         channel.send({ embeds: [embed], components: [row], content: userid });
         interaction.reply({ content: 'Report envoyé', ephemeral: true });
-
 
     }
 };

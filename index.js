@@ -36,7 +36,7 @@ process.on('unhandledRejection', error => {
         .setDescription(`Il y a eu une erreur : ${error}`)
         .setFooter({ text: 'Erreur' })
         .setTimestamp();
-    client.channels.cache.get('997109989615337553').send({
+    client.channels.cache.get('1114972242049253436').send({
         embeds: [embed]
     })
 });

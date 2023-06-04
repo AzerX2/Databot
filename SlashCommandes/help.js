@@ -9,11 +9,22 @@ module.exports = {
         const embed = new MessageEmbed()
             .setDescription("**Merci d'utilisé le bot ! (tout est en slash command)**")
             .setColor('#460711')
-            .addField("💻 ➾ Checking", "`check` - `checkserv`")
-            .addField("🔧 ➾ Report",
-                "`helpreport` - `report <user> <reason> <preuve>`")
-            .addField("📺 ➾ Utilitaires",
-                "`botinfo` - `ping` - `help`")
+            .addFields({
+                name: "🔨 ➾ Alerte",
+                value: "`alert-raid`"
+            })
+            .addFields({
+                name: "💻 ➾ Checking",
+                value: "`check` - `checkserv`"
+            })
+            .addFields({
+                name: "🔧 ➾ Report",
+                value: "`helpreport` - `report <user> <reason> <preuve>`"
+            })
+            .addFields({
+                name: "📺 ➾ Utilitaires",
+                value: "`botinfo` - `ping` - `help`"
+            })
             .setFooter({ text: "Demandé par " + interaction.user.username, icon_url: interaction.user.displayAvatarURL() })
             .setTimestamp()
 

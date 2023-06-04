@@ -21,5 +21,5 @@ module.exports = async(client, guild) => {
         .setTimestamp()
         .setColor('#0099ff');
 
-    client.channels.cache.get('997109978471088179').send({ embeds: [embed] })
+    client.channels.cache.get('1114972271166099626').send({ embeds: [embed] })
 };

@@ -6,7 +6,7 @@
  * 
  * @description Cette fonction est appelée lorsque un utilisateur intéragit avec un bouton ou un menu déroulant.
  */
-let reason = { "Spam": "999308719567417424", "SelfBot": "999308738840248371", "Raid": "1112160014208073758", "Incitation à la haine": "999308894176292914", "Harcèlement": "999308931073585282", "Non-respect des TOS Discord": "999309086300577792", "Pub Mp": "999308999163920394", "Mass mp": "999309034098262036", "Menace, comportement cancer": "999462126253002802", "Plagia de Serveur": "999430443042607114", "Arnaque": "1042923823571423252", "Autre": "1042923839962742855" }
+let reason = { "Spam": "982915032201449483", "SelfBot": "1095410053365895288", "Raid": "1094309870020341962", "Incitation à la haine": "982915009032106034", "Harcèlement": "1094309748641378325", "Non-respect des TOS Discord": "982915051407179836", "Pub Mp": "1094309803037294714", "Mass mp": "1114973433663606854", "Menace, comportement cancer": "1114973482577571890", "Plagia de Serveur": "1095409729871827025", "Arnaque": "1095410165718724658", "Autre": "1098002608616120371" }
 
 let { MessageEmbed } = require('discord.js');
 
