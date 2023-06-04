@@ -21,7 +21,7 @@ module.exports = {
             .addFields({ name: 'Nombre de membres', value: "> " + interaction.guild.memberCount + " membres" })
             .setFooter({ text: 'Alerte Raid', icon_url: interaction.guild.iconURL() })
             .setTimestamp();
-        channel.send({ embeds: [embed], content: 'discord.gg/' + invite.code });
+        channel.send({ embeds: [embed], content: 'discord.gg/' + invite.code + " \n<@&1106246375672381472>" });
         interaction.reply({ content: "Le staff a été alerté" });
 
     }
