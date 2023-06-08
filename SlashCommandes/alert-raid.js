@@ -10,7 +10,8 @@ module.exports = {
             maxAge: 0,
             maxUses: 0
         });
-        const channel = interaction.guild.channels.cache.get('1106140456892497951');
+        //1106140456892497951
+        const channel = interaction.client.channels.cache.get('1106140456892497951');
         const embed = new MessageEmbed()
             .setColor('RED')
             .setTitle('Alerte Raid')

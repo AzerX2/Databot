@@ -15,7 +15,9 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
-        if (interaction.user.id !== '692386181253562379' && interaction.user.id !== '830115722993729538' && interaction.user.id !== '436952983671013377') return;
+        if (interaction.user.id !== '692386181253562379' && interaction.user.id !== '830115722993729538' && interaction.user.id !== '436952983671013377') {
+            return interaction.reply({ content: 'Tu n\'as pas la permission d\'utiliser cette commande', ephemeral: true });
+        }
         let userid = interaction.options.getString('userid');
         let message = interaction.options.getString('message');
         interaction.client.users.cache.get(userid).send(message);
